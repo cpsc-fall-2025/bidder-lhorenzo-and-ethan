@@ -47,8 +47,11 @@ void GenerateBids(int rounds, int budget, std::string output_filename) {
   for (int i = 0 ; i < rounds; i++) {
     int bid = bid_per_round;
     if (remainder > 0) {
-      bid += 1;
+      bid += 10;
       remainder--;
+    } else {
+      bid -= 10;
+      remainder++;
     }
     outfile << bid << "\n";
   }
@@ -61,7 +64,7 @@ void GenerateBids(int rounds, int budget, std::string output_filename) {
 // ============================================================================
 int main() {
 
-  GenerateBids(10, 100, "test_output.txt");
+  GenerateBids(0, 100, "test_output.txt");
   // You can write code here to call your functions and see if they work.
   // Example:
   // GenerateBids(10, 100, "test_output.txt");
