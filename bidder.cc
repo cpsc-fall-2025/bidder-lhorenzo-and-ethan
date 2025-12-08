@@ -14,8 +14,7 @@
 // TODO: Implement this function to return a vector of strings
 // containing the names of everyone on your team.
 std::vector<std::string> GetTeamMembers() {
-  std::string GetTeamMembers("Lhorenzo Moran, Ethan Gallegos");
-  return {GetTeamMembers};
+  return {"Lhorenzo Moran", "Ethan Gallegos"};
 }
 
 // TODO: Implement this function to return a string that describes
@@ -44,8 +43,14 @@ void GenerateBids(int rounds, int budget, std::string output_filename) {
 
   std::ofstream outfile{output_filename};
   int bid_per_round = budget / rounds;
+  int remainder = budget % rounds;
   for (int i = 0 ; i < rounds; i++) {
-    outfile << bid_per_round << "\n";
+    int bid = bid_per_round;
+    if (remainder > 0) {
+      bid += 1;
+      remainder--;
+    }
+    outfile << bid << "\n";
   }
 }
 
@@ -56,7 +61,7 @@ void GenerateBids(int rounds, int budget, std::string output_filename) {
 // ============================================================================
 int main() {
 
-  std::string GenerateBids(0,20, 0, 20, 0, 20, "Let's see if this works");
+  GenerateBids(10, 100, "test_output.txt");
   // You can write code here to call your functions and see if they work.
   // Example:
   // GenerateBids(10, 100, "test_output.txt");
